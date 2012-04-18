@@ -1,6 +1,6 @@
 # Sequel::Devise
 
-TODO: Write a gem description
+Allows the usage of a Sequel::Model class as a Devise mapping.
 
 ## Installation
 
@@ -18,7 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    class User < Sequel::Model
+        plugin :devise
+        devise :database_authenticatable
+    end
 
 ## Contributing
 
