@@ -23,6 +23,9 @@ Or install it yourself as:
         devise :database_authenticatable
     end
 
+If you're interested in more instructions on using Sequel with Rails,
+I've written [some instructions](http://rosenfeld.herokuapp.com/en/articles/2012-04-18-getting-started-with-sequel-in-rails) in my web site.
+
 ## Contributing
 
 1. Fork it
