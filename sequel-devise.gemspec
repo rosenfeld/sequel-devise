@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "sequel-devise"
   gem.require_paths = ["lib"]
   gem.version       = Sequel::Devise::VERSION
+
+  gem.add_dependency 'devise'
+  gem.add_dependency 'orm_adapter-sequel'
 end
