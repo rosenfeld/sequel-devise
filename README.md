@@ -33,3 +33,8 @@ I've written [some instructions](http://rosenfeld.herokuapp.com/en/articles/2012
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rosenfeld/sequel-devise/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
