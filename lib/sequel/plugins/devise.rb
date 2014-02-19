@@ -13,6 +13,18 @@ module Sequel
           !changed_columns.empty?
         end
       end
+
+      module ClassMethods
+        Model::HOOKS.each do |hook|
+          define_method(hook) do |method = nil, options = {}, &block|
+            if Symbol === (if_method = options[:if])
+              orig_block = block
+              block = proc { instance_eval &orig_block if send(if_method) }
+            end
+            super method, &block
+          end
+        end
+      end
     end
   end
 end
