@@ -16,6 +16,19 @@ module Sequel
         def email_changed? # For validatable
           column_changed? :email
         end
+
+        def email_was # For confirmable
+          column_changes[:email].first
+        end
+
+        # for database_authenticatable:
+        def assign_attributes(hash)
+          set hash
+        end
+
+        def update_attributes(hash, *ignored)
+          update hash
+        end
       end
 
       module ClassMethods
@@ -23,7 +36,15 @@ module Sequel
           define_method(hook) do |method = nil, options = {}, &block|
             if Symbol === (if_method = options[:if])
               orig_block = block
-              block = proc { instance_eval &orig_block if send(if_method) }
+              block = nil
+              method_without_if = method
+              method = :"_sequel_hook_with_if_#{method}"
+              define_method(method) do
+                return unless send if_method
+                send method_without_if
+                instance_eval &orig_block if orig_block
+              end
+              private method
             end
             super method, &block
           end
