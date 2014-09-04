@@ -14,7 +14,7 @@ module Sequel
         end
 
         def email_changed? # For validatable
-          column_changed? :email
+          new? || column_changed?(:email)
         end
 
         def email_was # For confirmable
