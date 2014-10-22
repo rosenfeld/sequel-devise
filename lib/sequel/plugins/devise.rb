@@ -33,6 +33,10 @@ module Sequel
             return false
           end
         end
+
+        def update_attribute(key, value)
+          update_attributes key => value
+        end
       end
 
       module ClassMethods
