@@ -13,6 +13,10 @@ module Sequel
           !changed_columns.empty?
         end
 
+        def encrypted_password_changed? # For recoverable and database_authenticatable
+          new? || column_changed?(:encrypted_password)
+        end
+
         def email_changed? # For validatable
           new? || column_changed?(:email)
         end
