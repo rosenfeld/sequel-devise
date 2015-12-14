@@ -28,7 +28,7 @@ module Sequel
 
         def update_attributes(hash, *ignored)
           begin
-            update hash
+            update(hash) != false
           rescue Sequel::ValidationFailed
             return false
           end
