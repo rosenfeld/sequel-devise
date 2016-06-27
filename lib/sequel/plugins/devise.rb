@@ -44,6 +44,11 @@ module Sequel
       end
 
       module ClassMethods
+
+        def human_attribute_name(key)
+          key.to_s
+        end
+
         Model::HOOKS.each do |hook|
           define_method(hook) do |method = nil, options = {}, &block|
             if Symbol === (if_method = options[:if])
