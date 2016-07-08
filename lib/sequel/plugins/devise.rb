@@ -41,12 +41,34 @@ module Sequel
         def update_attribute(key, value)
           update_attributes key => value
         end
+
+        private
+
+        def devise_safe_values
+          values.delete_if{|k, v| devise_safe_keys.include?(k) || k =~ /password/i }
+        end
+
+        def devise_safe_keys
+          ::Devise::Models::Authenticatable::BLACKLIST_FOR_SERIALIZATION
+        end
       end
 
       module ClassMethods
 
         def human_attribute_name(key)
           key.to_s
+        end
+
+        module OverrideFixes
+          def inspect(safe = true)
+            return self.class.superclass.instance_method(:inspect).bind(self)[] unless safe
+            "#<#{self.class} @values=#{devise_safe_values.inspect}>"
+          end
+        end
+
+        def devise_modules_hook!
+          yield
+          include OverrideFixes
         end
 
         Model::HOOKS.each do |hook|

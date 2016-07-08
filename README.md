@@ -40,6 +40,11 @@ them in this gem, but there are some cases which are trickier. For example, Devi
 default behavior of Sequel::Model, so you'll have to change this behavior for your User classes
 that are intended to be used by Devise. There are a few solutions depending on your use case:
 
+Please make sure you take a look at the implementation to understand which methods are added
+in order to support Devise. Particularly, for security reasons Devise will override inspect
+so that it doesn't display passwords hashes for example among other keys. If you want the
+original inspect, call `user.inspect(false)`.
+
 ### You expect your Sequel Models to not raise on save failure by default
 
 Just disable the raise behavior by default:
