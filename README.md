@@ -1,3 +1,8 @@
+# Project has moved
+
+This project is no longer maintained in this repository.
+Please head over to [ontohub/sequel-devise](https://github.com/ontohub/sequel-devise) for the current version.
+
 # Sequel::Devise
 
 Allows the usage of a Sequel::Model class as a Devise mapping.
